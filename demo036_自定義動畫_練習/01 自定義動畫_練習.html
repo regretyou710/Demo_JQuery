@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo036_自定義動畫_練習</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      left: 300px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn1">逐漸擴大</button>
+  <button id="btn2">移動到指定位置</button>
+  <button id="btn3">移動指定距離</button>
+  <button id="btn4">停止動畫</button>
+
+  <div class="div1">
+    愛在西元前，學在尚矽谷
+  </div>
+
+  <!--
+jQuery動畫本質 : 在指定時間內不斷改變元素樣式值來實現的
+1. animate(): 自定義動畫效果的動畫
+2. stop(): 停止動畫
+
+-->
+  <script type="text/javascript">
+    /*
+   需求：
+    1. 逐漸擴大
+      1). 寬/高都擴為200px
+      2). 寬先擴為200px, 高後擴為200px
+    2. 移動到指定位置
+      1).移動到(500, 100)處
+      2).移動到(100, 20)處
+    3.移動指定的距離
+      1). 移動距離為(100, 50)
+      2). 移動距離為(-100, -20)
+    4. 停止動畫
+   */
+    var $div1 = $('.div1')
+
+    /*
+     1. 逐漸擴大
+       1). 寬/高都擴為200px
+       2). 寬先擴為200px, 高後擴為200px
+     */
+    $('#btn1').click(function () {
+      // 1). 寬/高都擴為200px
+      /*
+      $div1.animate({
+        width: 200,
+        height: 200
+      }, 1000)
+      */
+
+      // 2). 寬先擴為200px, 高後擴為200px
+      $div1
+        .animate({
+          width: 200
+        }, 1000)
+        .animate({
+          height: 200
+        }, 1000)
+
+    })
+
+    /*
+     2. 移動到指定位置
+       1).移動到(500, 100)處
+       2).移動到(100, 20)處
+     */
+    $('#btn2').click(function () {
+      // 1).移動到(500, 100)處
+      /*
+      $div1.animate({ // 向右下移動
+        left: 500,
+        top: 100
+      }, 1000)
+      */
+
+      // 2).移動到(100, 20)處
+      $div1.animate({ // 向左上移動
+        left: 100, // 300
+        top: 20 // 50
+      }, 1000)
+    })
+
+    /*
+     3.移動指定的距離
+       1). 移動距離為(100, 50)
+       2). 移動距離為(-100, -20)
+     */
+    $('#btn3').click(function () {
+      // 1). 移動距離為(100, 50)
+      /*$div1.animate({
+        left: '+=100',
+        top: '+=50'
+      }, 1000)*/
+
+      // 2). 移動距離為(-100, -20)
+      $div1.animate({
+        left: '-=100',
+        top: '-=20'
+      }, 3000)
+    })
+
+    $('#btn4').click(function () {
+      $div1.stop()
+    })
+  </script>
+</body>
+
+</html>

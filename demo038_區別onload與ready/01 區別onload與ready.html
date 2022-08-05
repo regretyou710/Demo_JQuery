@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo038_區別onload與ready</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <!--
+  區別: window.onload與 $(document).ready()
+    * window.onload
+      * 包括頁面的圖片加載完後才會回調(晚)
+      * 只能有一個監聽回調
+    * $(document).ready()
+      * 等同於: $(function(){})
+      * 頁面加載完就回調(早)，圖片加載比較慢，所以當頁面加載的過程中有對圖片獲取訊息可能會獲取不到
+      * 可以有多個監聽回調
+
+  驗證區別時，注意圖片是否為第一次加載，若不是則清除緩存再做驗證
+  -->
+  <script type="text/javascript">
+    /*
+     需求：
+     1. 直接打印img的寬度，觀察其值
+     2. 在 $(function(){}) 中 打印 img 的寬度
+     3. 在 window.onload 中打印寬度
+     4. 在 img 加載完成後打印寬度
+     */
+
+    // 1. 直接打印img的寬度，觀察其值
+    console.log('直接', $('#logo').width())
+
+    window.onload = function () {
+      console.log('onload', $('#logo').width())
+    }
+    window.onload = function () {
+      console.log('onload2', $('#logo').width())
+    }
+
+    $(function () {
+      console.log('ready', $('#logo').width())
+    })
+    $(function () {
+      console.log('ready2', $('#logo').width())
+    })
+
+    $('#logo').on('load', function () {
+      console.log('img load', $(this).width())
+    })
+
+    /*$(document).ready(function () {
+  
+    })*/
+  </script>
+</head>
+
+<body>
+  <h1>測試window.onload與$(document).ready()</h1>
+  <img id="logo"
+    src="https://gss0.bdstatic.com/5bVWsj_p_tVS5dKfpU_Y_D3/res/r/image/2017-05-19/6fec71d56242b74eb24b4ac80b817eac.png">
+</body>
+
+</html>

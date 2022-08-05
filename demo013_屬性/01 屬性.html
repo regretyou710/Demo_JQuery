@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo013_屬性</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+
+  <div id="div1" class="box" title="one">class為box的div1</div>
+  <div id="div2" class="box" title="two">class為box的div2</div>
+  <div id="div3">div3</div>
+  <span class="box">class為box的span</span>
+  <br />
+  <ul>
+    <li>AAAAA</li>
+    <li title="hello" class="box2">BBBBB</li>
+    <li class="box">CCCCC</li>
+    <li title="hello">DDDDDD</li>
+    <li title="two"><span>BBBBB</span></li>
+  </ul>
+
+  <input type="text" name="username" value="guiguClass" />
+  <br>
+  <input type="checkbox">
+  <input type="checkbox">
+  <br>
+  <button>選中</button>
+  <button>不選中</button>
+
+  <!--
+  1. 操作任意屬性
+     attr()
+     removeAttr()
+     prop()
+  2. 操作class屬性
+     addClass()
+     removeClass()
+  3. 操作HTML代碼/文本/值
+     html()
+     val()
+  -->
+  <script type="text/javascript">
+    /*
+     需求:
+     1. 讀取第一個div的title屬性
+     2. 給所有的div設置name屬性(value為atguigu)
+     3. 移除所有div的title屬性
+     4. 給所有的div設置class='guiguClass'
+     5. 給所有的div添加class='abc'
+     6. 移除所有div的guiguClass的class
+     7. 得到最後一個li的標籤體文本
+     8. 設置第一個li的標籤體為"<h1>mmmmmmmmm</h1>"
+     9. 得到輸入框中的value值
+     10. 將輸入框的值設置為atguigu
+     11. 點擊'全選'按鈕實現全選
+     12. 點擊'全不選'按鈕實現全不選
+     */
+    //1. 讀取第一個div的title屬性
+    // console.log($('div:first').attr('title')) // one
+
+    //2. 給所有的div設置name屬性(value為atguigu)
+    // $('div').attr('name', 'atguigu')
+
+    //3. 移除所有div的title屬性
+    // $('div').removeAttr('title')
+
+    //4. 給所有的div設置class='guiguClass'(會將原先的覆蓋)
+    //$('div').attr('class', 'guiguClass')
+
+    //5. 給所有的div添加class='abc'(疊加)
+    //$('div').addClass('abc')
+
+    //6. 移除所有div的guiguClass的class(疊加)
+    //$('div').removeClass('guiguClass')
+
+    //7. 得到最後一個li的標籤體文本
+    //console.log($('li:last').html())
+
+    //8. 設置第一個li的標籤體為"<h1>mmmmmmmmm</h1>"
+    //$('li:first').html('<h1>mmmmmmmmm</h1>')
+
+    //9. 得到輸入框中的value值
+    //console.log($(':text').val()) // 讀取
+
+    //10. 將輸入框的值設置為atguigu
+    //$(':text').val('atguigu') // 設置      讀寫合一
+
+    //11. 點擊'全選'按鈕實現全選
+    // attr(): 操作屬性值為非布爾值的屬性
+    // prop(): 專門操作屬性值為布爾值的屬性
+    var $checkboxs = $(':checkbox')
+    $('button:first').click(function () {
+      $checkboxs.prop('checked', true)
+    })
+
+    //12. 點擊'全不選'按鈕實現全不選
+    $('button:last').click(function () {
+      $checkboxs.prop('checked', false)
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo021_jQuery對象的查找</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <div id="div1" class="box" title="one">class為box的div1</div>
+  <div id="div2" class="box">class為box的div2</div>
+  <div id="div3">div3</div>
+  <span class="box">class為box的span</span>
+  <br />
+  <div>
+    <ul>
+      <span>span文本1</span>
+      <li>AAAAA</li>
+      <li title="hello" class="box2">BBBBB</li>
+      <li class="box" id='cc'>CCCCC</li>
+      <li title="hello">DDDDDD</li>
+      <li title="two"><span>span文本2</span></li>
+      <span>span文本3</span>
+    </ul>
+    <span>span文本444</span><br>
+    <li>eeeee</li>
+    <li>EEEEE</li>
+    <br>
+  </div>
+
+  <!--
+  在已經匹配出的元素集合中根據選擇器查找孩子/父母/兄弟標籤
+  1. children(): 子標籤中找
+  2. find() : 後代標籤中找
+  3. parent() : 父標籤
+  4. prevAll() : 前面所有的兄弟標籤
+  5. nextAll() : 後面所有的兄弟標籤
+  6. siblings() : 前後所有的兄弟標籤
+  -->
+  <script type="text/javascript">
+    /*
+     需求:
+     1. ul標籤的第2個span子標籤
+     2. ul標籤的第2個span後代標籤
+     3. ul標籤的父標籤
+     4. id為cc的li標籤的前面的所有li標籤
+     5. id為cc的li標籤的所有兄弟li標籤
+     */
+    var $ul = $('ul')
+    //1. ul標籤的第2個span子標籤
+    //$ul.children('span:eq(1)').css('background', 'red')
+
+    //2. ul標籤的第2個span後代標籤
+    //$ul.find('span:eq(1)').css('background', 'red')
+
+    //3. ul標籤的父標籤
+    //$ul.parent().css('background', 'red')
+
+    //4. id為cc的li標籤的前面的所有li標籤
+    var $li = $('#cc')
+    //$li.prevAll('li').css('background', 'red')
+    
+    //4.1 id為cc的li標籤的前面的所有標籤
+    //$li.prevAll().css('background', 'red')    
+    
+    //5. id為cc的li標籤的所有兄弟li標籤
+    //$li.siblings('li').css('background', 'red')
+  </script>
+</body>
+
+</html>

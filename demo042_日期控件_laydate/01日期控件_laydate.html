@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo042_日期控件_laydate</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="./js/laydate.js"></script>
+</head>
+
+<body>
+  <input placeholder="請輸入日期" class="laydate-icon" onclick="laydate()">
+
+  <input class="laydate-icon" id="demo" value="2014-6-25更新">
+  <script type="text/javascript">
+    ;
+    ! function () {
+      laydate.skin('molv');
+
+      laydate({
+        elem: '#demo'
+      })
+
+    }()
+
+    /*
+    匿名函數立即調用
+    寫法一:
+     (function(){
+      alert('a')
+    }())
+
+    寫法二:
+    !function(){
+      alert('a')
+    }()
+    */
+  </script>
+  
+  <div id="test1" class="laydate-icon"></div>
+  <script>
+    laydate({ // 配置對象
+      elem: '#test1',
+      format: 'YYYY/MM', // 分隔符可以任意定義，該例子表示只顯示年月
+      festival: true, //顯示節日
+      choose: function (datas) { //選擇日期完畢的回調
+        alert('得到：' + datas);
+      }
+    });
+  </script>
+
+  <div id="hello3" class="laydate-icon"></div>
+  <script>
+    laydate({
+      elem: '#hello3',
+      min: laydate.now(-1), //-1代表昨天，-2代表前天，以此類推
+      max: laydate.now(+1) //+1代表明天，+2代表後天，以此類推
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo012_常見效果2_多TAB點擊切換</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #tab li {
+      float: left;
+      list-style: none;
+      width: 80px;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #container {
+      position: relative;
+    }
+
+    #content1,
+    #content2,
+    #content3 {
+      width: 300px;
+      height: 100px;
+      padding: 30px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+    }
+
+    #tab1,
+    #content1 {
+      background-color: #ffcc00;
+    }
+
+    #tab2,
+    #content2 {
+      background-color: #ff00cc;
+    }
+
+    #tab3,
+    #content3 {
+      background-color: #00ccff;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>多Tab點擊切換</h2>
+
+  <ul id="tab">
+    <li id="tab1" value="1">10元套餐</li>
+    <li id="tab2" value="2">30元套餐</li>
+    <li id="tab3" value="3">50元包月</li>
+  </ul>
+
+  <div id="container">
+    <div id="content1">
+      10元套餐詳情：<br />&nbsp;每月套餐內撥打100分鐘，超出部分2毛/分鐘
+    </div>
+    <div id="content2" style="display: none">
+      30元套餐詳情：<br />&nbsp;每月套餐內撥打300分鐘，超出部分1.5毛/分鐘
+    </div>
+    <div id="content3" style="display: none">
+      50元包月詳情：<br />&nbsp;每月無限量隨心打
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var $contents = $('#container>div')
+    // 給3個li加監聽
+    /*$('#tab>li').click(function () { // 隱式遍歷
+      //alert('----')
+      // step1. 隱隱藏所有內容div
+      $contents.css('display', 'none')
+
+      // setp2. 顯示對應的內容div
+      // 2.1 得到當前點擊的li在兄弟中下標
+      var index = $(this).index()//將this(當前點擊的對象DOM元素包裝為jQuery對象)
+      // 2.2 找到對應的內容div, 並顯示
+      $contents[index].style.display = 'block'
+      // $($contents[index]).css('display', 'block')
+    })*/
+
+    var currIndex = 0 //當前顯示的內容div的下標
+    $('#tab>li').click(function () { // 隱式遍歷     
+      // step1. 隱藏當前已經顯示的內容div
+      $contents[currIndex].style.display = 'none'
+
+      // step2. 顯示對應的內容div
+      // 2.1 得到當前點擊的li在兄弟中下標
+      var index = $(this).index()
+      // 2.2 找到對應的內容div, 並顯示
+      $contents[index].style.display = 'block'
+
+      // 更新下標
+      currIndex = index
+    })
+  </script>
+</body>
+
+</html>

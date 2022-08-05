@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo017_scroll</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body style="height: 2000px;">
+  <div style="border:1px solid black;width:100px;height:150px;overflow:auto">
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    This is some text. This is some text. This is some text. This is some text.
+    his is some text.
+  </div>
+  <br>
+  <br>
+  <br>
+  <button id="btn1">得到scrollTop</button>
+  <button id="btn2">設置scrollTop</button>
+
+  <!--
+  1. scrollTop():
+    讀取/設置滾動條的Y坐標
+  2. $(document.body).scrollTop()+$(document.documentElement).scrollTop()
+    讀取頁面滾動條的Y坐標(兼容chrome和IE)
+  3. $('body,html').scrollTop(60);
+    滾動到指定位置(兼容chrome和IE)
+  -->
+  <script>
+    /*
+     需求:
+     1. 得到div或頁面滾動條的坐標
+     2. 讓div或頁面的滾動條滾動到指定位置
+     */
+    //1. 得到div或頁面滾動條的坐標
+    $('#btn1').click(function () {
+      console.log($('div').scrollTop())
+
+      // 兼容IE/Chrome
+      // console.log($('html').scrollTop()+$('body').scrollTop())//ex:0 + 100px or 100px + 0
+      console.log($(document.documentElement).scrollTop() + $(document.body)
+      .scrollTop()) //傳遞DOM元素，省略透過選擇器找到DOM元素的過程
+    })
+    //2. 讓div或頁面的滾動條滾動到指定位置
+    $('#btn2').click(function () {
+      $('div').scrollTop(200)
+      $('html,body').scrollTop(300) //兼容IE/Chrome使用並集(demo006_基本選擇器)，並集只用於設置時
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo016_offset和position</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 20px;
+      left: 10px;
+      background: blue;
+    }
+
+    .div2 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      background: red;
+    }
+
+    .div3 {
+      position: absolute;
+      top: 250px;
+    }
+  </style>
+</head>
+
+<body style="height: 2000px;">
+
+  <div class="div1">
+    <div class="div2">測試offset</div>
+  </div>
+
+  <div class='div3'>
+    <button id="btn1">讀取offset和position</button>
+    <button id="btn2">設置offset</button>
+  </div>
+
+  <!--
+  獲取/設置標籤的位置數據
+    * offset(): 相對頁面左上角的坐標
+    * position(): 相對於父元素左上角的坐標
+  -->
+  <script type="text/javascript">
+    /*
+    需求:
+    1. 點擊 btn1
+      打印 div1 相對於頁面左上角的位置
+      打印 div2 相對於頁面左上角的位置
+      打印 div1 相對於父元素左上角的位置
+      打印 div2 相對於父元素左上角的位置
+    2. 點擊 btn2
+      設置 div2 相對於頁面的左上角的位置
+     */
+    $('#btn1').click(function () {
+      //打印 div1 相對於頁面左上角的位置
+      var offset = $('.div1').offset()
+      console.log(offset.left, offset.top) // 10 20
+
+      //打印 div2 相對於頁面左上角的位置
+      offset = $('.div2').offset()
+      console.log(offset.left, offset.top) // 10 70
+
+      //打印 div1 相對於父元素左上角的位置
+      var position = $('.div1').position()
+      console.log(position.left, position.top) // 10 20
+
+      //打印 div2 相對於父元素左上角的位置
+      position = $('.div2').position()
+      console.log(position.left, position.top) // 0 50
+    })
+
+    //設置 div2 相對於頁面的左上角的位置
+    $('#btn2').click(function () {
+      $('.div2').offset({
+        left: 50,
+        top: 100
+      })
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo022_練習1_愛好選擇器</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <form>
+    你愛好的運動是？<input type="checkbox" id="checkedAllBox" />全選/全不選
+
+    <br />
+    <input type="checkbox" name="items" value="足球" />足球
+    <input type="checkbox" name="items" value="籃球" />籃球
+    <input type="checkbox" name="items" value="羽毛球" />羽毛球
+    <input type="checkbox" name="items" value="乒乓球" />乒乓球
+    <br />
+    <input type="button" id="checkedAllBtn" value="全　選" />
+    <input type="button" id="checkedNoBtn" value="全不選" />
+    <input type="button" id="checkedRevBtn" value="反　選" />
+    <input type="button" id="sendBtn" value="提　交" />
+  </form>
+
+  <script type="text/javascript">
+    /*
+   功能說明:
+   1. 點擊'全選': 選中所有愛好
+   2. 點擊'全不選': 所有愛好都不勾選
+   3. 點擊'反選': 改變所有愛好的勾選狀態
+   4. 點擊'提交': 提示所有勾選的愛好
+   5. 點擊'全選/全不選': 選中所有愛好, 或者全不選中
+   6. 點擊某個愛好時, 必要時更新'全選/全不選'的選中狀態
+   */
+    var $checkedAllBox = $('#checkedAllBox')
+    var $items = $(':checkbox[name=items]')
+
+    // 1. 點擊'全選': 選中所有愛好
+    $('#checkedAllBtn').click(function () {
+      $items.prop('checked', true)
+      $checkedAllBox.prop('checked', true)
+    })
+
+    // 2. 點擊'全不選': 所有愛好都不勾選
+    $('#checkedNoBtn').click(function () {
+      $items.prop('checked', false)
+      $checkedAllBox.prop('checked', false)
+    })
+
+    // 3. 點擊'反選': 改變所有愛好的勾選狀態
+    $('#checkedRevBtn').click(function () {
+      $items.each(function () {
+        this.checked = !this.checked
+      })
+
+      $checkedAllBox.prop('checked', $items.filter(':not(:checked)').length === 0)
+    })
+
+    //4. 點擊'提交': 提示所有勾選的愛好
+    $('#sendBtn').click(function () {
+      $items.filter(':checked').each(function () {
+        alert(this.value)
+      })
+    })
+
+    // 5. 點擊'全選/全不選': 選中所有愛好, 或者全不選中
+    $checkedAllBox.click(function () {
+      $items.prop('checked', this.checked)
+    })
+
+    // 6. 點擊某個愛好時, 必要時更新'全選/全不選'的選中狀態
+    $items.click(function () {
+      $checkedAllBox.prop('checked', $items.filter(':not(:checked)').length === 0)
+    })
+  </script>
+</body>
+
+</html>

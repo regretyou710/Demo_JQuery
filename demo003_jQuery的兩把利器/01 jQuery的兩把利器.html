@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo003_jQuery的兩把利器</title>
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+
+</head>
+
+<body>
+    <button>測試</button>
+    <script>
+        //1. jQuery函數:直接可用
+        console.log($, typeof $);
+        console.log($ === jQuery);//true
+
+        //2. jQuery對象:執行jQuery函數返回
+        console.log($());//jQuery.fn.init {}
+        
+        console.log($() instanceof Object);//true
+        /*
+        (function(window){
+            var jQuery = function(){
+                return new xxx();
+            };
+
+            window.$ = window.jQuery = jQuery;
+        })(window)
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo025_事件處理</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .out {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 20px;
+      left: 10px;
+      background: blue;
+    }
+
+    .inner {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      background: red;
+    }
+
+    .divBtn {
+      position: absolute;
+      top: 250px;
+    }
+  </style>
+</head>
+
+<body style="height: 2000px;">
+
+  <div class="out">
+    外部DIV
+    <div class="inner">內部div</div>
+  </div>
+
+  <div class='divBtn'>
+    <button id="btn1">取消綁定所有事件</button>
+    <button id="btn2">取消綁定mouseover事件</button>
+    <button id="btn3">測試事件坐標</button>
+    <a href="http://www.baidu.com" id="test4">百度一下</a>
+  </div>
+
+  <!--
+1. 事件綁定(2種)：
+  * eventName(function(){})
+    綁定對應事件名的監聽,	例如：$('#div').click(function(){});
+  * on(eventName, funcion(){})
+    通用的綁定事件監聽, 例如：$('#div').on('click', function(){})
+  * 優缺點:
+    eventName: 編碼方便, 但只能加一個監聽, 且有的事件監聽不支持
+    on: 編碼不方便, 可以添加多個監聽, 且更通用
+2. 事件解綁：
+  * off(eventName)
+3. 事件的坐標
+  * event.clientX, event.clientY  相對於視口的左上角
+  * event.pageX, event.pageY  相對於頁面的左上角
+  * event.offsetX, event.offsetY 相對於事件元素左上角
+4. 事件相關處理
+  * 停止事件冒泡 : event.stopPropagation()
+  * 阻止事件默認行為 : event.preventDefault()
+-->
+  <script type="text/javascript">
+    /*
+   需求：
+   1. 給.out綁定點擊監聽(用兩種方法綁定)
+   2. 給.inner綁定鼠標移入和移出的事件監聽(用3種方法綁定)
+   3. 點擊btn1解除.inner上的所有事件監聽
+   4. 點擊btn2解除.inner上的mouseover事件
+   5. 點擊btn3得到事件坐標
+   6. 點擊.inner區域, 外部點擊監聽不響應
+   7. 點擊鏈接, 如果當前時間是偶數不跳轉
+   */
+    //1. 給.out綁定點擊監聽(用兩種方法綁定)
+    /*$('.out').click(function () {
+     console.log('click out')
+     })*/
+    $('.out').on('click', function () {
+      console.log('on click out')
+    })
+
+    //2. 給.inner綁定鼠標移入和移出的事件監聽(用3種方法綁定)
+    /*
+     $('.inner')
+     .mouseenter(function () { // 進入
+      console.log('進入')
+     })
+     .mouseleave(function () { // 離開
+     console.log('離開')
+     })
+     */
+    /*
+     $('.inner')
+     .on('mouseenter', function () {
+     console.log('進入2')
+     })
+     .on('mouseleave', function () {
+     console.log('離開2')
+     })
+     */
+    $('.inner').hover(function () {
+      console.log('進入3')
+    }, function () {
+      console.log('離開3')
+    })
+
+    //3. 點擊btn1解除.inner上的所有事件監聽
+    $('#btn1').click(function () {
+      $('.inner').off()
+    })
+
+    //4. 點擊btn2解除.inner上的mouseenter事件
+    $('#btn2').click(function () {
+      $('.inner').off('mouseenter')
+    })
+
+    //5. 點擊btn3得到事件坐標
+    $('#btn3').click(function (event) { // event事件對象
+      console.log(event.offsetX, event.offsetY) // 原點為事件元素的左上角
+      console.log(event.clientX, event.clientY) // 原點為窗口的左上角
+      console.log(event.pageX, event.pageY) // 原點為頁面的左上角
+    })
+
+    //6. 點擊.inner區域, 外部點擊監聽不響應
+    $('.inner').click(function (event) {
+      console.log('click inner')
+      //停止事件冒泡
+      event.stopPropagation()
+    })
+
+    //7. 點擊鏈接, 如果當前時間是偶數不跳轉
+    $('#test4').click(function (event) {
+      if (Date.now() % 2 === 0) {
+        event.preventDefault()
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo039_自定義jQuery插件</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      left: 10px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="checkbox" name="items" value="足球" />足球
+  <input type="checkbox" name="items" value="籃球" />籃球
+  <input type="checkbox" name="items" value="羽毛球" />羽毛球
+  <input type="checkbox" name="items" value="乒乓球" />乒乓球
+  <br />
+  <input type="button" id="checkedAllBtn" value="全　選" />
+  <input type="button" id="checkedNoBtn" value="全不選" />
+  <input type="button" id="reverseCheckedBtn" value="反選" />
+
+  <!--
+1. 擴展jQuery的工具方法
+$.extend(object)
+2. 擴展jQuery對象的方法
+$.fn.extend(object)
+-->
+  <script type="text/javascript" src="../js/my_jQuery-plugin.js"></script>
+  <script type="text/javascript">
+    /*
+ 需求：
+ 1. 給 $ 添加4個工具方法:
+   * min(a, b) : 返回較小的值
+   * max(c, d) : 返回較大的值
+   * leftTrim() : 去掉字符串左邊的空格
+   * rightTrim() : 去掉字符串右邊的空格
+ 2. 給jQuery對象 添加3個功能方法:
+   * checkAll() : 全選
+   * unCheckAll() : 全不選
+   * reverseCheck() : 全反選
+ */
+    console.log($.min(3, 5), $.max(3, 5))
+    var string = '   my atguigu    '
+    console.log('-----' + $.leftTrim(string) + '-----')
+    console.log('-----' + $.rightTrim(string) + '-----')
+
+    var $items = $(':checkbox[name=items]')
+    $('#checkedAllBtn').click(function () {
+      $items.checkAll()
+    })
+    $('#checkedNoBtn').click(function () {
+      $items.unCheckAll()
+    })
+    $('#reverseCheckedBtn').click(function () {
+      $items.reverseCheck()
+    })
+  </script>
+</body>
+
+</html>

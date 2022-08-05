@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo027_事件委託</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <ul>
+    <li>1111</li>
+    <li>2222</li>
+    <li>3333</li>
+    <li>4444</li>
+  </ul>
+
+  <li>22222</li>
+  <br>
+  <button id="btn1">添加新的li</button>
+  <button id="btn2">刪除ul上的事件委托的監聽器</button>
+
+  <!--
+  1. 事件委托(委派/代理):
+    * 將多個子元素(li)的事件監聽委托給父輩元素(ul)處理
+    * 監聽回調是加在了父輩元素上
+    * 當操作任何一個子元素(li)時, 事件會冒泡到父輩元素(ul)
+    * 父輩元素不會直接處理事件, 而是根據event.target得到發生事件的子元素(li), 通過這個子元素調用事件回調函數
+  2. 事件委托的2方:
+    * 委托方: 業主  li
+    * 被委托方: 中介  ul
+  3. 使用事件委托的好處
+    * 添加新的子元素, 自動有事件響應處理
+    * 減少事件監聽的數量: n==>1
+  4. jQuery的事件委托API
+    * 設置事件委托: $(parentSelector).delegate(childrenSelector, eventName, callback)
+    * 移除事件委托: $(parentSelector).undelegate(eventName)
+  -->
+  <script>
+    // 設置事件委托
+    $('ul').delegate('li', 'click', function () {
+      // console.log(this)
+      this.style.background = 'red'
+    })
+
+    $('#btn1').click(function () {
+      $('ul').append('<li>新增的li....</li>')
+    })
+
+    $('#btn2').click(function () {
+      // 移除事件委托
+      $('ul').undelegate('click')
+    })
+  </script>
+</body>
+
+</html>

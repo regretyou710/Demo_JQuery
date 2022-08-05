@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo026_事件_面試題</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50px;
+      left: 10px;
+      background: olive;
+    }
+
+    .div2 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      background: red;
+    }
+
+    .div3 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50px;
+      left: 230px;
+      background: olive;
+    }
+
+    .div4 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      background: yellow;
+    }
+
+    .divText {
+      position: absolute;
+      top: 330px;
+      left: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="divText">
+    區分鼠標的事件
+  </div>
+
+  <div class="div1">
+    div1.....
+    <div class="div2">div2....</div>
+  </div>
+
+  <div class="div3">
+    div3.....
+    <div class="div4">div4....</div>
+  </div>
+  <!--
+區別mouseover與mouseenter?
+	* mouseover: 在移入子元素時也會觸發, 對應mouseout
+	* mouseenter: 只在移入當前元素時才觸發, 對應mouseleave
+								hover()使用的就是mouseenter()和mouseleave()
+區別on('eventName', fun)與eventName(fun)
+	* on('eventName', fun): 通用, 但編碼麻煩
+	* eventName(fun): 編碼簡單, 但有的事件沒有對應的方法
+-->
+  <script type="text/javascript">
+    $('.div1')
+      .mouseover(function () {
+        console.log('mouseover 進入')
+      })
+      .mouseout(function () {
+        console.log('mouseout 離開')
+      })
+
+    $('.div3')
+      .mouseenter(function () {
+        console.log('mouseenter 進入')
+      })
+      .mouseleave(function () {
+        console.log('mouseleave 離開')
+      })
+  </script>
+</body>
+
+</html>

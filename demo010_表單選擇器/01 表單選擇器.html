@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo010_表單選擇器</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <form>
+    用戶名: <input type="text" /><br>
+    密 碼: <input type="password" /><br>
+    愛 好:
+    <input type="checkbox" checked="checked" />籃球
+    <input type="checkbox" />足球
+    <input type="checkbox" checked="checked" />羽毛球 <br>
+    性 別:
+    <input type="radio" name="sex" value='male' />男
+    <input type="radio" name="sex" value='female' />女<br>
+    郵 箱: <input type="text" name="email" disabled="disabled" /><br>
+    所在地:
+    <select>
+      <option value="1">北京</option>
+      <option value="2" selected="selected">天津</option>
+      <option value="3">河北</option>
+    </select><br>
+    <input type="submit" value="提交" />
+  </form>
+  <!--
+  表單選擇器
+    1). 表單
+    2). 表單對象屬性
+  -->
+  <script type="text/javascript">
+    /*
+     需求:
+     1. 選擇不可用的文本輸入框
+     2. 顯示選擇愛好 的個數
+     3. 顯示選擇的城市名稱
+     */
+    //1. 選擇不可用的文本輸入框
+    $(':text:disabled').css('background', 'red')
+
+    //2. 顯示選擇愛好 的個數
+    console.log($(':checkbox:checked').length)
+
+    //3. 顯示選擇的城市名稱
+    $(':submit').click(function () {
+      var city = $('select>option:selected').html() // 選擇的option的標籤體文本
+      city = $('select').val() // 選擇的option的value屬性值
+      alert(city)
+    })
+  </script>
+</body>
+
+</html>

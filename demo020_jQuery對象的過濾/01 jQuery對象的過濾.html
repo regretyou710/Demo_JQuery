@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo020_jQuery對象的過濾</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <ul>
+    <li>AAAAA</li>
+    <li title="hello" class="box2">BBBBB</li>
+    <li class="box">CCCCC</li>
+    <li title="hello">DDDDDD</li>
+    <li title="two"><span>BBBBB</span></li>
+  </ul>
+  <li>eeeee</li>
+  <li>EEEEE</li>
+  <br>
+
+  <!--
+  在jQuery對象中的元素對象數組中過濾出一部分元素來,返回jQuery對象
+  1. first()
+  2. last()
+  3. eq(index|-index)
+  4. filter(selector)
+  5. not(selector)
+  6. has(selector)
+  -->
+
+  <script type="text/javascript">
+    /*
+     需求:
+     1. ul下li標籤第一個
+     2. ul下li標籤的最後一個
+     3. ul下li標籤的第二個
+     4. ul下li標籤中title屬性為hello的
+     5. ul下li標籤中title屬性不為hello的
+     6. ul下li標籤中有span子標籤的
+     */
+    var $lis = $('ul>li')
+    //1. ul下li標籤第一個
+    //$lis.first().css('background', 'red')
+    //$lis[0].style.background = 'red'
+
+    //2. ul下li標籤的最後一個
+    //$lis.last().css('background', 'red')
+
+    //3. ul下li標籤的第二個
+    //$lis.eq(1).css('background', 'red')
+
+    //4. ul下li標籤中title屬性為hello的
+    //$lis.filter('[title=hello]').css('background', 'red')
+
+    //5. ul下li標籤中title屬性不為hello的
+    //$lis.not('[title=hello]').css('background', 'red')//這種寫法回包含沒有title屬性的元素
+    //方式一:使用兩次filter函數
+    //$lis.filter('[title!=hello]').filter('[title]').css('background', 'red')
+    //方式二:多個選擇器的交集
+    //$lis.filter('[title][title!=hello]').css('background', 'red')
+
+    //6. ul下li標籤中有span子標籤的(span塊元素,li行內元素)
+    //$lis.has('span').css('background', 'red')//返回包含span的li元素
+  </script>
+</body>
+
+</html>

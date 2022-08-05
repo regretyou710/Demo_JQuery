@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo037_多庫共存</title>
+  <script type="text/javascript" src="./myLib.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      left: 10px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+問題 : 如果有2個庫都有$, 就存在沖突
+解決 : jQuery庫可以釋放$的使用權, 讓另一個庫可以正常使用, 此時jQuery庫只能使用jQuery了
+API : jQuery.noConflict()
+-->
+
+  <script type="text/javascript" src="../js/myLib.js"></script>
+  <script type="text/javascript">
+    // 釋放$的使用權
+    jQuery.noConflict()
+
+    // 調用myLib中的$
+    $()
+    
+    // 要想使用jQuery的功能, 只能使用jQuery
+    jQuery(function () {
+      console.log('文檔加載完成')
+    })
+    
+    console.log('+++++')
+  </script>
+</body>
+
+</html>

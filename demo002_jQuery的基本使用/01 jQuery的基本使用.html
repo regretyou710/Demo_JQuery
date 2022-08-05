@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo002_jQuery的基本使用t</title>
+    <script>
+        //使用原生DOM
+        window.onload = function () {
+            let btn1 = document.getElementById('btn1');
+
+            btn1.onclick = function () {
+                let text = document.getElementById('text');
+                alert(text.value);
+            };
+        };
+    </script>
+
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+    <script>
+        //使用jQuery實現
+        //使用jQuery核心函數:$/jQuery
+
+        //綁定文檔加載完的監聽
+        $(
+            function () {
+                $('#btn2').click(function () { //btn2綁定點擊監聽
+                    let text = $('#text').val();
+                    alert(text);
+                });
+            }
+        )
+    </script>
+
+    #region 
+    <!-- 
+    <script>
+        //使用jQuery實現
+        //使用jQuery核心對象:執行$()返回的對象
+
+        //綁定文檔加載完的監聽
+        jQuery( //使用jQuery核心函數($/jQuery)
+            function () {
+                let $btn2 = $('#btn2');
+                $btn2.click(function () { //btn2綁定點擊監聽
+                    let text = $('#text').val();
+                    alert(text);
+                });
+            }
+        )
+    </script>
+     -->
+    #endregion
+</head>
+
+<body>
+    <!-- 
+        需求:點擊確定按鈕，提示輸入的值
+     -->
+    <input type="text" name="text" id="text" />
+    <button type="button" name="btn1" id="btn1">確定(原生版)</button>
+    <button type="button" name="btn2" id="btn2">確定(jQuery版)</button>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo018_常見效果3_回到頂部</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style>
+    #to_top {
+      width: 30px;
+      height: 40px;
+      font: 14px/20px arial;
+      text-align: center;
+      background: #06c;
+      position: fixed;
+      cursor: pointer;
+      color: #fff;
+      left: 1050px;
+      top: 500px;
+    }
+  </style>
+</head>
+
+<body style="height: 2000px;">
+
+  <div id="to_top">返回頂部</div>
+
+  <script type="text/javascript">
+    $('#to_top').click(function () {
+      // 瞬間滾到頂部
+      //$('html,body').scrollTop(0)
+
+      // 平滑滾到頂部
+      // 總距離
+      var $page = $('html,body') //並集用於讀取值
+      var distance = $('html').scrollTop() + $('body').scrollTop()
+
+      // 總時間
+      var time = 500
+
+      // 間隔時間
+      var intervalTime = 50
+
+      // 每次滾動的距離 總距離/次數
+      var itemDistance = distance / (time / intervalTime)
+
+      // 使用循環定時器不斷滾動
+      var intervalId = setInterval(function () {
+        distance -= itemDistance
+
+        // 到達頂部, 停止定時器
+        if (distance <= 0) {
+          distance = 0 //修正
+          clearInterval(intervalId)
+        }
+        $page.scrollTop(distance)
+      }, intervalTime)
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo005_jQuery對象的使用</title>
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <button>測試一</button>
+    <button>測試二</button>
+    <button id="btn3">測試三</button>
+    <button>測試四</button>
+
+    <!--
+    1. jQuery對象是一個包含所有匹配的任意多個dom元素的偽數組對象
+    2. 基本行為
+      * length: 包含的DOM元素個數
+      * [index]/get(index): 得到對應位置的DOM元素
+      * each(): 遍歷包含的所有DOM元素
+      * index(): 得到在所在兄弟元素中的下標
+    -->
+    <script type="text/javascript">
+        /*
+       需求:
+       需求1. 統計一共有多少個按鈕
+       需求2. 取出第2個button的文本
+       需求3. 輸出所有button標籤的文本
+       需求4. 輸出'測試三'按鈕是所有按鈕中的第幾個
+       */
+        //需求1. 統計一共有多少個按鈕
+        var $buttons = $('button')
+        /*length: 包含的DOM元素個數*/
+        console.log($buttons.length)
+
+        //需求2. 取出第2個button的文本
+        /*[index]/get(index): 得到對應位置的DOM元素*/
+        console.log($buttons[1].innerHTML, $buttons.get(1).innerHTML)
+
+        //需求3. 輸出所有button標籤的文本
+        /*
+        each(): 遍歷包含的所有DOM元素
+        此時的each()是屬於jQuery返回對象身上的方法與$.each()不同意思
+        $.each()表示jQuery函數對象身上的方法(核心函數對象方法)
+        */
+        /*
+        $buttons.each(function (index, domEle) {
+            console.log(index, domEle.innerHTML, this)
+        })
+        */
+        $buttons.each(function () {
+            console.log(this.innerHTML)
+        })
+
+
+        //需求4. 輸出'測試三'按鈕是所有按鈕中的第幾個
+        /*index(): 得到在所在兄弟元素中的下標*/
+        console.log($('#btn3').index()) //2
+
+        /*
+        1. 偽數組
+          * Object對象
+          * length屬性
+          * 數值下標屬性
+          * 沒有數組特別的方法: forEach(), push(), pop(), splice()
+         */
+        console.log($buttons instanceof Array) // false
+        // 自定義一個偽數組
+        var weiArr = {}
+        weiArr.length = 0
+        weiArr[0] = 'atguigu'
+        weiArr.length = 1
+        weiArr[1] = 123
+        weiArr.length = 2
+
+        for (var i = 0; i < weiArr.length; i++) {
+            var obj = weiArr[i]
+            console.log(i, obj)
+        }
+
+        console.log(weiArr.forEach, $buttons.forEach) //undefined, undefined
+    </script>
+</body>
+
+</html>

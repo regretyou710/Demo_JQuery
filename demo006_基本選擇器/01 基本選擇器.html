@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo006_基本選擇器</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+  <div id="div1" class="box">div1(class="box")</div>
+  <div id="div2" class="box">div2(class="box")</div>
+  <div id="div3">div3</div>
+  <span class="box">span(class="box")</span>
+
+  <br>
+  <ul>
+    <li>AAAAA</li>
+    <li title="hello">BBBBB(title="hello")</li>
+    <li class="box">CCCCC(class="box")</li>
+    <li title="hello">DDDDDD(title="hello")</li>
+  </ul>
+
+  <!--
+    1. 是什麽?
+      - 有特定格式的字符串
+    2. 作用
+      - 用來查找特定頁面元素
+    3. 基本選擇器
+      - #id : id選擇器
+      - element : 元素選擇器
+      - .class : 屬性選擇器
+      - * : 任意標籤
+      - selector1,selector2,selectorN : 取多個選擇器的並集(組合選擇器)
+      - selector1selector2selectorN : 取多個選擇器的交集(相交選擇器)
+    -->
+  <script type="text/javascript">
+    /*
+       需求:
+       1. 選擇id為div1的元素
+       2. 選擇所有的div元素
+       3. 選擇所有class屬性為box的元素
+       4. 選擇所有的div和span元素
+       5. 選擇所有class屬性為box的div元素
+    */
+    //1. 選擇id為div1的元素
+    //$('#div1').css('background', 'red')
+
+    //2. 選擇所有的div元素
+    //$('div').css('background', 'red')
+
+    //3. 選擇所有class屬性為box的元素
+    //$('.box').css('background', 'red')
+
+    //4. 選擇所有的div和span元素
+    //$('div,span').css('background', 'red')
+
+    //5. 選擇所有class屬性為box的div元素
+    //$('div.box').css('background', 'red')
+
+    //$('*').css('background', 'red')
+  </script>
+</body>
+
+</html>

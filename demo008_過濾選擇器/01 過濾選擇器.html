@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo008_過濾選擇器</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+</head>
+
+<body>
+
+  <div id="div1" class="box">class為box的div1</div>
+  <div id="div2" class="box">class為box的div2</div>
+  <div id="div3">div3</div>
+  <span class="box">class為box的span</span>
+  <br />
+  <ul>
+    <li>AAAAA</li>
+    <li title="hello">BBBBB</li>
+    <li class="box">CCCCC</li>
+    <li title="hello">DDDDDD</li>
+    <li title="two">BBBBB</li>
+    <li style="display:none">我本來是隱藏的</li>
+  </ul>
+  <!--
+  在原有選擇器匹配的元素中進一步進行過濾的選擇器,返回jQuery對象
+    * 基本
+    * 內容
+    * 可見性
+    * 屬性
+  -->
+  <script type="text/javascript">
+    /*
+     需求:
+     1. 選擇第一個div
+     2. 選擇最後一個class為box的元素
+     3. 選擇所有class屬性不為box的div
+     4. 選擇第二個和第三個li元素
+     5. 選擇內容為BBBBB的li
+     6. 選擇隱藏的li
+     7. 選擇有title屬性的li元素
+     8. 選擇所有屬性title為hello的li元素
+     */
+    //1. 選擇第一個div
+    //$('div:first').css('background', 'red')
+
+    //2. 選擇最後一個class為box的元素
+    //$('.box:last').css('background', 'red')
+
+    //3. 選擇所有class屬性不為box的div
+    //$('div:not(.box)').css('background', 'red')  //沒有class屬性也可以
+
+    //4. 選擇第二個和第三個li元素
+    //$('li:gt(0):lt(2)').css('background', 'red') //多個過濾選擇器不是同時執行, 而是依次
+    //$('li:lt(3):gt(0)').css('background', 'red')
+
+    //5. 選擇內容為BBBBB的li
+    //$('li:contains("BBBBB")').css('background', 'red')
+
+    //6. 選擇隱藏的li
+    //console.log($('li:hidden').length, $('li:hidden')[0])
+
+    //7. 選擇有title屬性的li元素
+    //$('li[title]').css('background', 'red')
+
+    //8. 選擇所有屬性title為hello的li元素
+    $('li[title="hello"]').css('background', 'red')
+  </script>
+</body>
+
+</html>

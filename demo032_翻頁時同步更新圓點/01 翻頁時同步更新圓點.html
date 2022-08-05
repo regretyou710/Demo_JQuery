@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo032_翻頁時同步更新圓點</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    /*去除內邊距,沒有鏈接下劃線*/
+    * {
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    /*讓<body有20px的內邊距*/
+    body {
+      padding: 20px;
+    }
+
+    /*最外圍的div*/
+    #container {
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      /*相對定位*/
+      margin: 0 auto;
+    }
+
+    /*包含所有圖片的<div>*/
+    #list {
+      width: 4200px;
+      /*5張圖片的寬: 7*600 */
+      height: 400px;
+      position: absolute;
+      /*絕對定位*/
+      z-index: 1;
+    }
+
+    /*所有的圖片<img>*/
+    #list img {
+      float: left;
+      /*浮在左側*/
+    }
+
+    /*包含所有圓點按鈕的<div>*/
+    #pointsDiv {
+      position: absolute;
+      height: 10px;
+      width: 100px;
+      z-index: 2;
+      bottom: 20px;
+      left: 250px;
+    }
+
+    /*所有的圓點<span>*/
+
+    #pointsDiv span {
+      cursor: pointer;
+      float: left;
+      border: 1px solid #fff;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #333;
+      margin-right: 5px;
+    }
+
+    /*第一個<span>*/
+
+    #pointsDiv .on {
+      background: orangered;
+    }
+
+    /*切換圖標<a>*/
+
+    .arrow {
+      cursor: pointer;
+      display: none;
+      line-height: 39px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: bold;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      z-index: 2;
+      top: 180px;
+      background-color: RGBA(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    /*鼠標移到切換圖標上時*/
+    .arrow:hover {
+      background-color: RGBA(0, 0, 0, 0.7);
+    }
+
+    /*鼠標移到整個div區域時*/
+    #container:hover .arrow {
+      display: block;
+      /*顯示*/
+    }
+
+    /*上一個切換圖標的左外邊距*/
+    #prev {
+      left: 20px;
+    }
+
+    /*下一個切換圖標的右外邊距*/
+    #next {
+      right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="list" style="left: -600px;">
+      <img src="img/5.jpg" alt="5" />
+      <img src="img/1.jpg" alt="1" />
+      <img src="img/2.jpg" alt="2" />
+      <img src="img/3.jpg" alt="3" />
+      <img src="img/4.jpg" alt="4" />
+      <img src="img/5.jpg" alt="5" />
+      <img src="img/1.jpg" alt="1" />
+    </div>
+    <div id="pointsDiv">
+      <span index="1" class="on"></span>
+      <span index="2"></span>
+      <span index="3"></span>
+      <span index="4"></span>
+      <span index="5"></span>
+    </div>
+    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+  </div>
+
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>

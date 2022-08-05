@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo035_顯示與隱藏</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    .div1 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50px;
+      left: 10px;
+      background: red;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn1">瞬間顯示</button>
+  <button id="btn2">慢慢顯示</button>
+  <button id="btn3">慢慢隱藏</button>
+  <button id="btn4">顯示隱藏切換</button>
+
+  <div class="div1">
+  </div>
+
+  <!--
+顯示隱藏，默認沒有動畫, 動畫(opacity/height/width)
+1. show(): (不)帶動畫的顯示
+2. hide(): (不)帶動畫的隱藏
+3. toggle(): (不)帶動畫的切換顯示/隱藏
+
+有傳遞秒數就會有動畫效果
+-->
+  <script type="text/javascript">
+    /*
+  需求:
+  1. 點擊btn1, 立即顯示
+  2. 點擊btn2, 慢慢顯示
+  3. 點擊btn3, 慢慢隱藏
+  4. 點擊btn4, 切換顯示/隱藏
+   */
+    var $div1 = $('.div1')
+    //1. 點擊btn1, 立即顯示
+    $('#btn1').click(function () {
+      $div1.show()
+    })
+
+    //2. 點擊btn2, 慢慢顯示
+    $('#btn2').click(function () {
+      $div1.show(1000)
+    })
+
+    //3. 點擊btn3, 慢慢隱藏
+    $('#btn3').click(function () {
+      $div1.hide(1000)
+    })
+
+    //4. 點擊btn4, 切換顯示/隱藏
+    $('#btn4').click(function () {
+      $div1.toggle(1000)
+    })
+  </script>
+</body>
+
+</html>

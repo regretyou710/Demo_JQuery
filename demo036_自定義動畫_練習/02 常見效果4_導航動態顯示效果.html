@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>demo036_常見效果4_導航動態顯示效果</title>
+  <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+  <style rel="stylesheet">
+    * {
+      margin: 0;
+      padding: 0;
+      word-wrap: break-word;
+      word-break: break-all;
+    }
+
+    body {
+      background: #FFF;
+      color: #333;
+      font: 12px/1.6em Helvetica, Arial, sans-serif;
+    }
+
+    a {
+      color: #0287CA;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul,
+    li {
+      list-style: none;
+    }
+
+    img {
+      border: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 1em;
+    }
+
+    html {
+      overflow: -moz-scrollbars-vertical;
+      /* 在Firefox下始終顯示滾動條*/
+    }
+
+    #navigation {
+      width: 784px;
+      padding: 8px;
+      margin: 8px auto;
+      background: #3B5998;
+      height: 18px;
+    }
+
+    #navigation ul li {
+      float: left;
+      margin-right: 14px;
+      position: relative;
+      z-index: 100;
+    }
+
+    #navigation ul li a {
+      display: block;
+      padding: 0 8px;
+      background: #EEEEEE;
+      font-weight: 700;
+    }
+
+    #navigation ul li a:hover {
+      background: none;
+      color: #fff;
+    }
+
+    #navigation ul li ul {
+      background-color: #88C366;
+      position: absolute;
+      width: 80px;
+      overflow: hidden;
+      display: none;
+    }
+
+    #navigation ul li ul li {
+      border-bottom: 1px solid #BBB;
+      text-align: left;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navigation">
+    <ul>
+      <li><a href="#">首 頁</a></li>
+      <li><a href="#">襯 衫</a>
+        <ul>
+          <li><a href="#">短袖襯衫</a></li>
+          <li><a href="#">長袖襯衫</a></li>
+          <li><a href="#">無袖襯衫</a></li>
+        </ul>
+      </li>
+      <li><a href="#">衛 衣</a>
+        <ul>
+          <li><a href="#">開襟衛衣</a></li>
+          <li><a href="#">套頭衛衣</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">褲 子</a>
+        <ul>
+          <li><a href="#">休閒褲</a></li>
+          <li><a href="#">卡其褲</a></li>
+          <li><a href="#">牛仔褲</a></li>
+          <li><a href="#">短褲</a></li>
+        </ul>
+      </li>
+      <li><a href="#">聯系我們</a></li>
+    </ul>
+  </div>
+
+  <script type="text/javascript">
+    $('#navigation>ul>li:has(ul)').hover(function () {
+      //動畫展開
+      $(this).children('ul').stop(true).slideDown()//.stop(true)將還在進行slideDown()或slideUp()停止
+    }, function () {
+      // 動畫收縮
+      $(this).children('ul').stop(true).slideUp()
+    })
+  </script>
+</body>
+
+</html>

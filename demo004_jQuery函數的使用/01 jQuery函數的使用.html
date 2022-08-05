@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo004_jQuery函數的使用</title>
+    <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <button id="btn">測試</button>
+        <br />
+
+        <input type="text" name="msg1" /><br />
+        <input type="text" name="msg2" /><br />
+    </div>
+
+    <!--
+    1. 作為一般函數調用: $(param)
+      1). 參數為函數 : 當DOM加載完成後，執行此回調函數
+      2). 參數為選擇器字符串: 查找所有匹配的標籤, 並將它們封裝成jQuery對象
+      3). 參數為DOM對象: 將dom對象封裝成jQuery對象
+      4). 參數為html標籤字符串 (用得少): 創建標籤對象並封裝成jQuery對象
+    2. 作為對象使用: $.xxx()
+      1). $.each() : 隱式遍歷數組
+      2). $.trim() : 去除兩端的空格
+    -->
+    <script type="text/javascript">
+        /*
+       需求1. 點擊按鈕: 顯示按鈕的文本, 顯示一個新的輸入框
+       需求2. 遍歷輸出數組中所有元素值
+       需求3. 去掉"  my atguigu  "兩端的空格
+       */
+        /*需求1. 點擊按鈕: 顯示按鈕的文本, 顯示一個新的輸入框*/
+        //1.1). 參數為函數 : 當DOM加載完成後，執行此回調函數
+        $(function () { // 綁定文檔加載完成的監聽
+            // 1.2). 參數為選擇器字符串: 查找所有匹配的標籤, 並將它們封裝成jQuery對象
+            $('#btn').click(function () { // 綁定點擊事件監聽
+                // this是什麽? 發生事件的dom元素(<button>)
+                // alert(this.innerHTML)
+
+                // 1.3). 參數為DOM對象: 將dom對象封裝成jQuery對象
+                alert($(this).html())
+                
+                // 1.4). 參數為html標籤字符串 (用得少): 創建標籤對象並封裝成jQuery對象
+                $('<input type="text" name="msg3"/><br/>').appendTo('div')
+            })
+        })
+
+        /*需求2. 遍歷輸出數組中所有元素值*/
+        var arr = [2, 4, 7]
+        // 1). $.each() : 隱式遍歷數組
+        $.each(arr, function (index, item) {
+            console.log(index, item)
+        })
+        
+        // 2). $.trim() : 去除兩端的空格
+        var str = ' my atguigu  '
+        // console.log('---'+str.trim()+'---')
+        console.log('---' + $.trim(str) + '---')
+    </script>
+</body>
+
+</html>
