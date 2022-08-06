@@ -30,7 +30,8 @@ $(function () {
   hoverMiniCart()
   clickProductTabs()
   moveMiniImg()
-  hoverMiniImg()  
+  hoverMiniImg()
+  bigImg()
 
   /*
    1. 鼠標移入顯示,移出隱藏
@@ -296,5 +297,106 @@ $(function () {
     }, function () {
       $(this).children().removeClass('hoveredThumb')
     })
-  }  
+  }
+
+  /*
+   11. 當鼠標在中圖上移動時, 顯示對應大圖的附近部分區域
+   */
+  function bigImg() {
+    var $mediumImg = $('#mediumImg')
+    var $mask = $('#mask') // 小黃塊
+    var $maskTop = $('#maskTop')
+    var $largeImgContainer = $('#largeImgContainer')
+    var $loading = $('#loading')
+    var $largeImg = $('#largeImg')
+    var maskWidth = $mask.width()
+    var maskHeight = $mask.height()
+    var maskTopWidth = $maskTop.width()
+    var maskTopHeight = $maskTop.height()
+
+    $maskTop.hover(function () {// 進入
+      $mask.show()
+
+      // 動態加載對應的大圖
+      // images\products\product-s2-m.jpg
+      // images/products/product-s2-l.jpg
+      var src = $mediumImg.attr('src').replace('-m.', '-l.')
+      $largeImg.attr('src', src)
+      $largeImgContainer.show()
+
+      // 綁定加載完成的監聽
+      $largeImg.on('load', function () { // 大圖加載完成
+
+        // 得到大圖的尺寸
+        var largeWidth = $largeImg.width()
+        var largeHeight = $largeImg.height()
+
+        // 給$largeImgContainer設置尺寸
+        $largeImgContainer.css({
+          width: largeWidth / 2,
+          height: largeHeight / 2
+        })
+
+        // 顯示大圖
+        $largeImg.show()
+
+        // 隱藏加載進度條
+        $loading.hide()
+
+        //鼠標移動的監聽
+        $maskTop.mousemove(function (event) {
+          /*
+          1. 移動小黃塊
+          2. 移動大圖
+           */
+
+          /*1. 移動小黃塊*/
+          //計算left/top
+          var left = 0
+          var top = 0
+
+          // 事件的坐標
+          var eventLeft = event.offsetX
+          var eventTop = event.offsetY
+          left = eventLeft - maskWidth / 2
+          top = eventTop - maskHeight / 2
+
+          // left在[0, maskTopWidth-maskWidth]          
+          if (left < 0) {
+            left = 0
+          } else if (left > maskTopWidth - maskWidth) {
+            left = maskTopWidth - maskWidth
+          }
+
+          // top在[0, maskTopHeight-maskHeight]
+          if (top < 0) {
+            top = 0
+          } else if (top > maskTopHeight - maskHeight) {
+            top = maskTopHeight - maskHeight
+          }
+
+          //給$mask重新定位
+          $mask.css({
+            left: left,
+            top: top
+          })
+
+          /*2. 移動大圖*/
+          // 得到大圖的坐標
+          left = -left * largeWidth / maskTopWidth//中圖的小黃塊向右移動時大圖的left為負值才會跟著向左移動,小黃塊與放大鏡是反向移動
+          top = -top * largeHeight / maskTopHeight
+
+          // 設置大圖的坐標
+          $largeImg.css({
+            left: left,
+            top: top
+          })
+        })
+      })
+    }, function () {
+      $mask.hide()
+      $largeImgContainer.hide()
+      $largeImg.hide()
+    })
+  }
 })
